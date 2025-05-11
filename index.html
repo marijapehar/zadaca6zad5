@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Validacija registarske oznake BiH</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Validacija registarske oznake BiH</h2>
+    <form onsubmit="validirajOznaku(event)">
+        <input type="text" id="oznaka" placeholder="npr. SA-123456" />
+        <br>
+        <button type="submit">Validiraj</button>
+    </form>
+
+    <script>
+        function jeIspravnaOznaka(oznaka) {
+            const regex = /^[A-ZČĆŽŠĐ]{2}-\d{3,6}$/;
+            return regex.test(oznaka.trim().toUpperCase());
+        }
+
+        function validirajOznaku(event) {
+            event.preventDefault();
+            const unos = document.getElementById("oznaka").value;
+            const ispravna = jeIspravnaOznaka(unos);
+
+            if (ispravna) {
+                alert("Format registarske oznake je ispravan.");
+            } else {
+                alert("Neispravan format registarske oznake!");
+            }
+        }
+    </script>
+
+</body>
+</html>
